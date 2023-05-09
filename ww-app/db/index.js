@@ -27,9 +27,25 @@ const mongo = () => {
         }
     }
 
+    async function find(collectionName, searchIdentifier) {
+        try {
+            const collection = db.collection(collectionName);
+            if (searchIdentifier) {
+                return await collection
+                    .find({ searchId: searchIdentifier })
+                    .next();
+            } else {
+                return await collection.find({}).toArray();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return {
         connect,
-        save
+        save,
+        find
     };
 };
 
