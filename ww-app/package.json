@@ -1,0 +1,19 @@
+{
+  "name": "ww-app",
+  "version": "1.0.0",
+  "description": "Search service for the Wizarding World",
+  "main": "server.js",
+  "scripts": {
+    "start": "npx nodemon server.js"
+  },
+  "author": "Ryan McKean",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.4.0",
+    "ww-api": "file:../ww-api"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
