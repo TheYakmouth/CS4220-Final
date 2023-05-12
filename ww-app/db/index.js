@@ -8,7 +8,7 @@ const mongo = () => {
 
     async function connect() {
         try {
-            const client = MongoClient(mongoURL);
+            const client = new MongoClient(mongoURL);
             await client.connect();
 
             db = client.db();
