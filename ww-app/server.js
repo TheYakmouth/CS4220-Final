@@ -11,8 +11,8 @@ const mongo = require('./db');
 const search = require('./routes/search.js');
 app.use('/search', search);
 
-const results = require('./routes/results.js');
-app.use('/results', results);
+// const results = require('./routes/results.js');
+// app.use('/results', results);
 
 app.listen(port, async () => {
     console.log(`Server listening on port ${port}`);
