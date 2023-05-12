@@ -9,6 +9,7 @@ const wwAPI = require('ww-api');
 //     next();
 // });
 
+// http://localhost:8888/search?term=[Term]
 router.get('/', async (req, res) => {
     try {
         const { query } = req;
@@ -23,14 +24,25 @@ router.get('/', async (req, res) => {
             })
         };
 
-        // console.log(results);
+        console.log(query);
 
         res.json(results);
 
-        database.save('Results', { ...results });
+        database.save('Results', { id: results.id, ...results });
     } catch (error) {
         res.status(500).json(error.toString());
         // console.error(error);
+    }
+});
+
+router.get('/:id/details', async (req, res) => {
+    try {
+        const { params, query } = req;
+        const { id } = params;
+
+        const searched = await database.find('Results', id);
+    } catch (error) {
+        res.status(500).json(error.toString());
     }
 });
 

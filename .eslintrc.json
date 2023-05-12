@@ -1,0 +1,50 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-var": "error",
+        "no-const-assign": "error",
+        "no-func-assign": "error",
+        "no-undef": "error",
+        "eqeqeq": [
+            "warn",
+            "always",
+            {
+                "null": "ignore"
+            }
+        ],
+        "no-lone-blocks": "error",
+        "no-useless-catch": "error",
+        "no-dupe-args": "error",
+        "no-eval": "error",
+        "valid-typeof": "error",
+        "camelcase": [
+            "error",
+            {
+                "properties": "never"
+            }
+        ]
+    }
+}
