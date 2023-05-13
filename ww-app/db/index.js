@@ -31,9 +31,7 @@ const mongo = () => {
         try {
             const collection = db.collection(collectionName);
             if (searchIdentifier) {
-                return await collection
-                    .find({ searchId: searchIdentifier })
-                    .next();
+                return await collection.find({ id: searchIdentifier }).next();
             } else {
                 return await collection.find({}).toArray();
             }
@@ -42,10 +40,24 @@ const mongo = () => {
         }
     }
 
+    async function update(collectionName, searchIdentifier, data) {
+        try {
+            const collection = db.collection(collectionName);
+
+            await collection.updateOne(
+                { searchterm: searchIdentifier },
+                { $set: data }
+            );
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return {
         connect,
         save,
-        find
+        find,
+        update
     };
 };
 
