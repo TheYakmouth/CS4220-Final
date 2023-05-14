@@ -2,15 +2,6 @@ const router = require('express').Router();
 const COLLECTION_NAME = 'History';
 const database = require('../db');
 
-// router.get('/', async (req, res) => {
-//     try {
-//         const results = await database.find('Results');
-//         res.json(results);
-//     } catch (error) {
-//         res.status(500).json(error.toString());
-//     }
-// });
-
 router.get('/', async (req, res) => {
     try {
         const { query } = req;

@@ -1,4 +1,4 @@
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 const config = require('../config.json');
 
@@ -26,19 +26,6 @@ const mongo = () => {
             console.error(error);
         }
     }
-
-    // async function find(collectionName, searchIdentifier) {
-    //     try {
-    //         const collection = db?.collection(collectionName);
-    //         if (searchIdentifier) {
-    //             return await collection.find({ id: searchIdentifier }).next();
-    //         } else {
-    //             return await collection.find({}).toArray();
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
 
     async function find(collectionName, searchIdentifier) {
         try {
