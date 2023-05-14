@@ -59,7 +59,7 @@ const mongo = () => {
         try {
             const collection = db?.collection(collectionName);
             return await collection
-                .find({ _id: new ObjectId(searchIdentifier) })
+                .find({ uid: searchIdentifier })
                 .next();
         } catch (error) {
             console.error(error);
