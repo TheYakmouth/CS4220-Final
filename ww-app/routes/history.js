@@ -1,24 +1,26 @@
 const router = require('express').Router();
+const COLLECTION_NAME = 'History';
 const database = require('../db');
 
-/**
- * @api {GET} /history              get search history from database
- * @apiExample                      localhost:8888/history
- */
+// router.get('/', async (req, res) => {
+//     try {
+//         const results = await database.find('Results');
+//         res.json(results);
+//     } catch (error) {
+//         res.status(500).json(error.toString());
+//     }
+// });
+
 router.get('/', async (req, res) => {
     try {
-        const searchTerm = req.query.searchTerm;
-        let history;
-        if (searchTerm) {
-            // find history by searchTerm
-            history = await database.find('History', {searchTerm});
-        } else {
-            // get all search history
-            history = await database.find('History');
-        }
-        res.json(history);
+        const { query } = req;
+        const { term } = query;
+        const termCleaned =
+            term?.split('/').filter((str) => str !== '')[0] || '';
+        const history = await database.find(COLLECTION_NAME, termCleaned);
+        return res.status(200).json(history || []);
     } catch (error) {
-        res.status(500).json(error.toString());
+        return res.status(500).json(error.toString());
     }
 });
 
