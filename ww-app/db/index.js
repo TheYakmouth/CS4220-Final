@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const config = require('../config.json');
 
@@ -20,18 +20,33 @@ const mongo = () => {
 
     async function save(collectionName, data) {
         try {
-            const collection = db.collection(collectionName);
+            const collection = db?.collection(collectionName);
             await collection.insertOne(data);
         } catch (error) {
             console.error(error);
         }
     }
 
+    // async function find(collectionName, searchIdentifier) {
+    //     try {
+    //         const collection = db?.collection(collectionName);
+    //         if (searchIdentifier) {
+    //             return await collection.find({ id: searchIdentifier }).next();
+    //         } else {
+    //             return await collection.find({}).toArray();
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
     async function find(collectionName, searchIdentifier) {
         try {
-            const collection = db.collection(collectionName);
+            const collection = db?.collection(collectionName);
             if (searchIdentifier) {
-                return await collection.find({ id: searchIdentifier }).next();
+                return await collection
+                    .find({ searchTerm: searchIdentifier })
+                    .next();
             } else {
                 return await collection.find({}).toArray();
             }
@@ -40,12 +55,23 @@ const mongo = () => {
         }
     }
 
+    async function findById(collectionName, searchIdentifier) {
+        try {
+            const collection = db?.collection(collectionName);
+            return await collection
+                .find({ _id: new ObjectId(searchIdentifier) })
+                .next();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     async function update(collectionName, searchIdentifier, data) {
         try {
-            const collection = db.collection(collectionName);
+            const collection = db?.collection(collectionName);
 
             await collection.updateOne(
-                { searchterm: searchIdentifier },
+                { searchTerm: searchIdentifier },
                 { $set: data }
             );
         } catch (error) {
@@ -57,6 +83,7 @@ const mongo = () => {
         connect,
         save,
         find,
+        findById,
         update
     };
 };
