@@ -7,8 +7,10 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-# Zip Files
-*.Zip
+# Homework Files
+*.zip
+*.txt
+*.mp4
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
